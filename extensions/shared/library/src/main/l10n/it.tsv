@@ -2795,3 +2795,60 @@ Waiting for the saves before it	In attesa dei salvataggi precedenti
 Even on silent	Anche in silenzioso
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	I video del feed partono con l'audio anche con il telefono in silenzioso o in vibrazione. Conta solo il volume multimediale.
+
+%1$d followed again	%1$d ti seguono di nuovo
+%1$d new	%1$d nuovi
+%1$d people unfollowed you	%1$d persone hanno smesso di seguirti
+%1$d unfollowed	%1$d hanno smesso di seguirti
+%1$d unfollowed you	%1$d hanno smesso di seguirti
+%1$s unfollowed you	%1$s ha smesso di seguirti
+1 followed again	1 ti segue di nuovo
+1 new	1 nuovo
+1 person unfollowed you	1 persona ha smesso di seguirti
+1 unfollowed	1 ha smesso di seguirti
+1 unfollowed you	1 ha smesso di seguirti
+All %1$d	Tutti %1$d
+Check now	Controlla ora
+Check now couldn't find your followers count.	Controlla ora non ha trovato il numero dei tuoi follower.
+Check now couldn't open your Followers list.	Controlla ora non è riuscito ad aprire la tua lista di follower.
+Check now needs Instagram's main screen. Open your profile and try again.	Controlla ora richiede la schermata principale di Instagram. Apri il tuo profilo e riprova.
+Check now ran out of time before your Followers list finished loading.	Controlla ora ha esaurito il tempo prima che la tua lista di follower finisse di caricarsi.
+Check now stopped: your Followers list closed.	Controlla ora si è fermato: la tua lista di follower è stata chiusa.
+Check now stopped: your Followers list stopped loading.	Controlla ora si è fermato: la tua lista di follower ha smesso di caricarsi.
+Checked just now. No one left or joined since the check before.	Controllato proprio ora. Nessuno se n'è andato o è arrivato dal controllo precedente.
+Checked just now: %1$s.	Controllato proprio ora: %1$s.
+Checking your followers…	Controllo dei tuoi follower…
+Copied %1$s	%1$s copiato
+Couldn't save the follower history.	Impossibile salvare la cronologia follower.
+Export	Esporta
+Export needs Android 10 or newer.	Esporta richiede Android 10 o versioni successive.
+Followed again %1$d	Ti seguono di nuovo %1$d
+Followed you again	Ti segue di nuovo
+Follower history button	Pulsante della cronologia follower
+Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.	Instagram ha mostrato %1$d dei tuoi %2$d follower, troppo pochi per confrontarli. Riprova più tardi.
+Last checked\n%1$s	Ultimo controllo\n%1$s
+New %1$d	Nuovi %1$d
+No changes yet. Each time you check, anyone who left or joined shows up here.	Ancora nessuna modifica. A ogni controllo, chi se n'è andato o è arrivato compare qui.
+Not checked yet	Non ancora controllato
+Nothing here with this filter.	Niente con questo filtro.
+Notify me when someone unfollows	Avvisami quando qualcuno smette di seguirmi
+Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.	Aggiunge sotto i numeri del tuo profilo un pulsante che apre la cronologia follower e dice quante persone se ne sono andate dall'ultima volta che hai guardato.
+Reading…	Lettura…
+Saved to Download/HushGram/%1$s	Salvato in Download/HushGram/%1$s
+Started following you	Ha iniziato a seguirti
+Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.	Tocca Controlla ora, oppure scorri fino in fondo la tua lista di follower. Quel primo sguardo è il punto di partenza, e chi se ne va dopo compare qui.
+Turn on Recent unfollowers in HushGram settings > Profiles first.	Attiva prima Smesso di seguirti di recente in Impostazioni di HushGram > Profili.
+Unfollowed %1$d	Smesso di seguirti %1$d
+Unfollowed you	Ha smesso di seguirti
+Unfollowers	Smesso di seguirti
+When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.	Quando un controllo dell'intera lista di follower trova qualcuno sparito, una notifica dice chi. Toccandola si apre la cronologia follower.
+Who left your Followers list, found by HushGram's follower history	Chi ha lasciato la tua lista di follower, trovato dalla cronologia follower di HushGram
+You follow them %1$d	Li segui %1$d
+between %1$s and %2$s	tra il %1$s e il %2$s
+by %1$s	entro il %1$s
+followed again	ti seguono di nuovo
+followers at the last check	follower all'ultimo controllo
+new	nuovi
+today, %1$s	oggi, %1$s
+unfollowed	smesso di seguirti
+yesterday, %1$s	ieri, %1$s

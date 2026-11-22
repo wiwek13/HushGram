@@ -2795,3 +2795,60 @@ Waiting for the saves before it	Önceki kayıtlar bekleniyor
 Even on silent	Sessizdeyken de
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	Telefon sessizde ya da titreşimdeyken de akış videoları sesli başlar. Yalnızca medya sesi dikkate alınır.
+
+%1$d followed again	%1$d yeniden takip etti
+%1$d new	%1$d yeni
+%1$d people unfollowed you	%1$d kişi seni takipten çıktı
+%1$d unfollowed	%1$d takipten çıktı
+%1$d unfollowed you	%1$d kişi seni takipten çıktı
+%1$s unfollowed you	%1$s seni takipten çıktı
+1 followed again	1 yeniden takip etti
+1 new	1 yeni
+1 person unfollowed you	1 kişi seni takipten çıktı
+1 unfollowed	1 takipten çıktı
+1 unfollowed you	1 kişi seni takipten çıktı
+All %1$d	Tümü %1$d
+Check now	Şimdi kontrol et
+Check now couldn't find your followers count.	Şimdi kontrol et takipçi sayını bulamadı.
+Check now couldn't open your Followers list.	Şimdi kontrol et Takipçiler listeni açamadı.
+Check now needs Instagram's main screen. Open your profile and try again.	Şimdi kontrol et, Instagram'ın ana ekranına ihtiyaç duyar. Profilini aç ve tekrar dene.
+Check now ran out of time before your Followers list finished loading.	Şimdi kontrol et, Takipçiler listen yüklenmeyi bitirmeden süresi doldu.
+Check now stopped: your Followers list closed.	Şimdi kontrol et durdu: Takipçiler listen kapandı.
+Check now stopped: your Followers list stopped loading.	Şimdi kontrol et durdu: Takipçiler listen yüklenmeyi bıraktı.
+Checked just now. No one left or joined since the check before.	Az önce kontrol edildi. Önceki kontrolden beri kimse ayrılmadı veya katılmadı.
+Checked just now: %1$s.	Az önce kontrol edildi: %1$s.
+Checking your followers…	Takipçilerin kontrol ediliyor…
+Copied %1$s	%1$s kopyalandı
+Couldn't save the follower history.	Takipçi geçmişi kaydedilemedi.
+Export	Dışa aktar
+Export needs Android 10 or newer.	Dışa aktarma için Android 10 veya daha yenisi gerekir.
+Followed again %1$d	Yeniden takip edenler %1$d
+Followed you again	Seni yeniden takip etti
+Follower history button	Takipçi geçmişi düğmesi
+Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.	Instagram %2$d takipçinden yalnızca %1$d tanesini gösterdi, karşılaştırmak için çok az. Daha sonra tekrar dene.
+Last checked\n%1$s	Son kontrol\n%1$s
+New %1$d	Yeni %1$d
+No changes yet. Each time you check, anyone who left or joined shows up here.	Henüz değişiklik yok. Her kontrol ettiğinde ayrılan veya katılan herkes burada görünür.
+Not checked yet	Henüz kontrol edilmedi
+Nothing here with this filter.	Bu filtreyle burada bir şey yok.
+Notify me when someone unfollows	Biri takipten çıkınca bana bildir
+Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.	Kendi profilindeki sayıların altına takipçi geçmişini açan ve son baktığından beri kaç kişinin ayrıldığını gösteren bir düğme koyar.
+Reading…	Okunuyor…
+Saved to Download/HushGram/%1$s	Şuraya kaydedildi: Download/HushGram/%1$s
+Started following you	Seni takip etmeye başladı
+Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.	Şimdi kontrol et'e dokun veya kendi Takipçiler listeni sonuna kadar kaydır. Bu ilk bakış başlangıç noktasıdır ve ondan sonra ayrılan herkes burada görünür.
+Turn on Recent unfollowers in HushGram settings > Profiles first.	Önce HushGram ayarları > Profiller'de Son takipten çıkanlar'ı aç.
+Unfollowed %1$d	Takipten çıkanlar %1$d
+Unfollowed you	Seni takipten çıktı
+Unfollowers	Takipten çıkanlar
+When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.	Takipçiler listenin tamamına bakıldığında biri eksikse, bir bildirim kim olduğunu söyler. Dokununca takipçi geçmişi açılır.
+Who left your Followers list, found by HushGram's follower history	HushGram'ın takipçi geçmişinin bulduğu, Takipçiler listenden ayrılanlar
+You follow them %1$d	Takip ettiklerin %1$d
+between %1$s and %2$s	%1$s ile %2$s arasında
+by %1$s	%1$s itibarıyla
+followed again	yeniden takip etti
+followers at the last check	son kontroldeki takipçi
+new	yeni
+today, %1$s	bugün, %1$s
+unfollowed	takipten çıktı
+yesterday, %1$s	dün, %1$s

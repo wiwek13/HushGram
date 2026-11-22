@@ -4811,7 +4811,12 @@ public final class HushgramPreferenceFragment extends AbstractPreferenceFragment
         Row row = new Row(context);
         row.setKey(UNFOLLOWERS_ROW);
         row.setPersistent(false);
-        row.setSelectable(false);
+        row.setSelectable(true);
+        row.setOnPreferenceClickListener(p -> {
+            Activity activity = activityOf(p.getContext());
+            if (activity != null) FollowersScreen.show(activity);
+            return true;
+        });
         row.setTitle(L10n.t("Who unfollowed you"));
         row.setSummary(L10n.t("Reading the list…"));
         Context application = context.getApplicationContext() != null ? context.getApplicationContext() : context;
@@ -4829,39 +4834,44 @@ public final class HushgramPreferenceFragment extends AbstractPreferenceFragment
         Row row = new Row(context);
         row.setKey(FOLLOWER_HISTORY_ROW);
         row.setPersistent(false);
-        row.setSelectable(false);
+        row.setSelectable(true);
+        row.setOnPreferenceClickListener(p -> {
+            Activity activity = activityOf(p.getContext());
+            if (activity != null) FollowersScreen.show(activity);
+            return true;
+        });
         row.setTitle(L10n.t("Follower history"));
         row.setSummary(L10n.t("Reading the list…"));
         Context application = context.getApplicationContext() != null ? context.getApplicationContext() : context;
         if (!Utils.runOnBackgroundThread(() -> {
-            String summary = followerHistorySummary(Unfollowers.history(application));
+            String summary = followerHistorySummary(FollowerHistory.shown(application));
             Utils.runOnMainThread(() -> row.setSummary(summary));
         })) {
-            row.setSummary(followerHistorySummary(Unfollowers.history(application)));
+            row.setSummary(followerHistorySummary(FollowerHistory.shown(application)));
         }
         return mark(row, SettingsIcons.PERSON);
     }
 
-    /** What the history row says for [changes], newest first. */
-    static String followerHistorySummary(java.util.List<FollowerHistory.Change> changes) {
-        if (changes.isEmpty()) {
+    /** What the history row says for [log], newest first. */
+    static String followerHistorySummary(FollowerHistory.Log log) {
+        if (log.events.isEmpty()) {
             return L10n.t("Nothing logged yet. With Recent unfollowers on, each time you scroll your own Followers "
                     + "list to the end, changes since the last time are added here.");
         }
         java.text.DateFormat day = java.text.DateFormat.getDateInstance(java.text.DateFormat.MEDIUM);
         StringBuilder text = new StringBuilder();
         int shown = 0;
-        for (FollowerHistory.Change change : changes) {
+        for (FollowerHistory.Event event : log.events) {
             if (shown == UNFOLLOWERS_SHOWN) break;
-            String who = change.username.isEmpty() ? L10n.f("Account %1$s", change.id) : "@" + change.username;
-            String when = day.format(new java.util.Date(change.when));
-            String line = change.kind == FollowerHistory.UNFOLLOWED ? L10n.f("%1$s unfollowed you, %2$s", who, when)
-                    : change.kind == FollowerHistory.FOLLOWED_AGAIN ? L10n.f("%1$s followed you again, %2$s", who, when)
+            String who = event.username.isEmpty() ? L10n.f("Account %1$s", event.id) : "@" + event.username;
+            String when = day.format(new java.util.Date(event.when));
+            String line = event.kind == FollowerHistory.Kind.LEFT ? L10n.f("%1$s unfollowed you, %2$s", who, when)
+                    : event.kind == FollowerHistory.Kind.BACK ? L10n.f("%1$s followed you again, %2$s", who, when)
                     : L10n.f("%1$s started following you, %2$s", who, when);
             text.append(line).append('\n');
             shown++;
         }
-        if (changes.size() > UNFOLLOWERS_SHOWN) text.append(L10n.t("Only the newest 50 are shown.")).append('\n');
+        if (log.events.size() > UNFOLLOWERS_SHOWN) text.append(L10n.t("Only the newest 50 are shown.")).append('\n');
         return text.toString().trim();
     }
 
@@ -4904,7 +4914,7 @@ public final class HushgramPreferenceFragment extends AbstractPreferenceFragment
                 if (cleared) {
                     Utils.showToastShort(L10n.t("Unfollower list cleared."));
                     list.setSummary(unfollowersSummary(Unfollowers.Record.NONE));
-                    history.setSummary(followerHistorySummary(java.util.Collections.emptyList()));
+                    history.setSummary(followerHistorySummary(FollowerHistory.Log.NONE));
                 } else {
                     Utils.showToastLong(L10n.t("Couldn't clear the unfollower list. Try again."));
                 }

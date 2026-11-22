@@ -2653,6 +2653,23 @@ public class Settings extends BaseSettings {
             new BooleanSetting("hushgram_track_unfollowers", FALSE);
 
     /**
+     * Under {@link #TRACK_UNFOLLOWERS}: a button under the counts on your own profile that opens the
+     * follower history and says how many left since you last looked
+     * ({@link app.hushgram.extension.instagram.profile.FollowersChip}). On to start. Read each time
+     * Instagram binds your profile's header.
+     */
+    public static final BooleanSetting FOLLOWERS_PROFILE_BUTTON =
+            new BooleanSetting("hushgram_followers_profile_button", TRUE, parent(TRACK_UNFOLLOWERS));
+
+    /**
+     * Under {@link #TRACK_UNFOLLOWERS}: a notification when a look at your Followers list finds
+     * someone gone, unless Check now made the look and the history is showing it already
+     * ({@link app.hushgram.extension.instagram.profile.FollowersCheck}). On to start.
+     */
+    public static final BooleanSetting UNFOLLOW_NOTIFICATIONS =
+            new BooleanSetting("hushgram_unfollow_notifications", TRUE, parent(TRACK_UNFOLLOWERS));
+
+    /**
      * Under {@link #TRACK_UNFOLLOWERS}, Notify me of unfollowers (#492): a notification when a Followers
      * list you scrolled to the end is missing people the one before had
      * ({@link app.hushgram.extension.instagram.profile.FollowerAlert}). Only Recent unfollowers compares

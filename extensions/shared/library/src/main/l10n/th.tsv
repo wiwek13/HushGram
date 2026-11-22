@@ -2792,3 +2792,60 @@ Waiting for the saves before it	กำลังรอรายการก่อ
 Even on silent	แม้อยู่ในโหมดเงียบ
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	วิดีโอในฟีดจะเริ่มพร้อมเสียงแม้โทรศัพท์อยู่ในโหมดเงียบหรือสั่น นับเฉพาะระดับเสียงสื่อ
+
+%1$d followed again	%1$d followed again
+%1$d new	%1$d new
+%1$d people unfollowed you	%1$d people unfollowed you
+%1$d unfollowed	%1$d unfollowed
+%1$d unfollowed you	%1$d unfollowed you
+%1$s unfollowed you	%1$s unfollowed you
+1 followed again	1 followed again
+1 new	1 new
+1 person unfollowed you	1 person unfollowed you
+1 unfollowed	1 unfollowed
+1 unfollowed you	1 unfollowed you
+All %1$d	All %1$d
+Check now	Check now
+Check now couldn't find your followers count.	Check now couldn't find your followers count.
+Check now couldn't open your Followers list.	Check now couldn't open your Followers list.
+Check now needs Instagram's main screen. Open your profile and try again.	Check now needs Instagram's main screen. Open your profile and try again.
+Check now ran out of time before your Followers list finished loading.	Check now ran out of time before your Followers list finished loading.
+Check now stopped: your Followers list closed.	Check now stopped: your Followers list closed.
+Check now stopped: your Followers list stopped loading.	Check now stopped: your Followers list stopped loading.
+Checked just now. No one left or joined since the check before.	Checked just now. No one left or joined since the check before.
+Checked just now: %1$s.	Checked just now: %1$s.
+Checking your followers…	Checking your followers…
+Copied %1$s	Copied %1$s
+Couldn't save the follower history.	Couldn't save the follower history.
+Export	Export
+Export needs Android 10 or newer.	Export needs Android 10 or newer.
+Followed again %1$d	Followed again %1$d
+Followed you again	Followed you again
+Follower history button	Follower history button
+Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.	Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.
+Last checked\n%1$s	Last checked\n%1$s
+New %1$d	New %1$d
+No changes yet. Each time you check, anyone who left or joined shows up here.	No changes yet. Each time you check, anyone who left or joined shows up here.
+Not checked yet	Not checked yet
+Nothing here with this filter.	Nothing here with this filter.
+Notify me when someone unfollows	Notify me when someone unfollows
+Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.	Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.
+Reading…	Reading…
+Saved to Download/HushGram/%1$s	Saved to Download/HushGram/%1$s
+Started following you	Started following you
+Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.	Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.
+Turn on Recent unfollowers in HushGram settings > Profiles first.	Turn on Recent unfollowers in HushGram settings > Profiles first.
+Unfollowed %1$d	Unfollowed %1$d
+Unfollowed you	Unfollowed you
+Unfollowers	Unfollowers
+When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.	When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.
+Who left your Followers list, found by HushGram's follower history	Who left your Followers list, found by HushGram's follower history
+You follow them %1$d	You follow them %1$d
+between %1$s and %2$s	between %1$s and %2$s
+by %1$s	by %1$s
+followed again	followed again
+followers at the last check	followers at the last check
+new	new
+today, %1$s	today, %1$s
+unfollowed	unfollowed
+yesterday, %1$s	yesterday, %1$s

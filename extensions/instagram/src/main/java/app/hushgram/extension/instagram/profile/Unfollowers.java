@@ -139,6 +139,12 @@ public final class Unfollowers {
 
         @Nullable
         String username(Object user);
+
+        /** Whether you follow [user], as the row says, or null when it doesn't. */
+        @Nullable
+        default Boolean following(Object user) {
+            return null;
+        }
     }
 
     static final Parts PATCHED = new Parts() {
@@ -186,11 +192,32 @@ public final class Unfollowers {
         public String username(Object user) {
             return Unfollowers.username(user);
         }
+
+        @Override
+        public Boolean following(Object user) {
+            return FriendshipStatus.friendshipFollowing(user);
+        }
     };
 
-    /** What a list taken is handed to: written off the main thread on the phone, at once in tests. */
+    /**
+     * What a list taken is handed to: written off the main thread on the phone, at once in tests.
+     */
+    @FunctionalInterface
     interface Keeper {
         void keep(String viewer, Map<String, String> followers, long when, long generation);
+    }
+
+    /**
+     * Extended keeper that also receives follow status and follower count.
+     */
+    @FunctionalInterface
+    interface RichKeeper extends Keeper {
+        void keep(String viewer, Map<String, String> followers, Map<String, Boolean> following, int count, long when, long generation);
+
+        @Override
+        default void keep(String viewer, Map<String, String> followers, long when, long generation) {
+            keep(viewer, followers, Collections.emptyMap(), followers.size(), when, generation);
+        }
     }
 
     /** How long a whole list must stand unchanged before it is kept. A list that keeps changing is still loading. */
@@ -203,7 +230,7 @@ public final class Unfollowers {
 
     static volatile Later later = Utils::runOnMainThreadDelayed;
 
-    static final Keeper STORED = (viewer, followers, when, generation) -> {
+    static final RichKeeper STORED = (viewer, followers, following, count, when, generation) -> {
         Context context = Utils.getContext();
         if (context == null) {
             forgetTaken(viewer, generation);
@@ -213,7 +240,7 @@ public final class Unfollowers {
         later.after(() -> {
             // A newer list for the account took over the generation while this one waited.
             if (!current(viewer, generation)) return;
-            if (!Utils.runOnBackgroundThread(() -> take(application, viewer, followers, when, generation))) {
+            if (!Utils.runOnBackgroundThread(() -> take(application, viewer, followers, following, count, when, generation))) {
                 forgetTaken(viewer, generation);
             }
         }, SETTLE_MS);
@@ -238,30 +265,42 @@ public final class Unfollowers {
             if (!(kind instanceof Enum) || !FOLLOWERS_KIND.equals(((Enum<?>) kind).name())) return false;
             String viewer = parts.viewer(binder);
             if (viewer == null || viewer.isEmpty() || !viewer.equals(parts.owner(binder))) return false;
-            // Only a list with nothing more to load, and never on a guess.
-            if (!Boolean.FALSE.equals(parts.hasMore(list))) return false;
+            Boolean more = parts.hasMore(list);
             List<?> loaded = (List<?>) users;
             Object account = parts.ownerAccount(list);
             Integer count = account == null ? null : parts.followerCount(account);
+            // Check now scrolls this list while it's your own Followers list and has more to load.
+            FollowersCheck.ownFollowers(more, loaded.size(), count);
+            // Only a list with nothing more to load, and never on a guess.
+            if (!Boolean.FALSE.equals(more)) return false;
             if (count == null || !full(loaded.size(), count)) {
                 Logger.printDebug(() -> "Recent unfollowers: " + loaded.size() + " of " + count + " followers loaded, not taken");
                 return false;
             }
             Map<String, String> followers = new LinkedHashMap<>();
+            Map<String, Boolean> following = new HashMap<>();
             for (Object user : loaded) {
                 String id = parts.id(user);
                 // A row that can't be told apart makes the whole list untrustworthy.
                 if (id == null || id.isEmpty()) return false;
                 String name = parts.username(user);
                 if (followers.put(id, name == null ? "" : name) != null) return false;
+                Boolean follow = parts.following(user);
+                if (follow != null) following.put(id, follow);
             }
             if (!viewer.equals(parts.viewer(binder)) || !viewer.equals(parts.owner(binder))
                     || !Boolean.FALSE.equals(parts.hasMore(list))
                     || !count.equals(parts.followerCount(account))) return false;
             long generation = firstTake(viewer, followers);
-            if (generation == 0) return false;
+            if (generation == 0 && !FollowersCheck.running()) return false;
+            if (generation == 0) generation = 1;
+            FollowersCheck.handedOver();
             try {
-                keeper.keep(viewer, Collections.unmodifiableMap(followers), now, generation);
+                if (keeper instanceof RichKeeper) {
+                    ((RichKeeper) keeper).keep(viewer, Collections.unmodifiableMap(followers), Collections.unmodifiableMap(following), count, now, generation);
+                } else {
+                    keeper.keep(viewer, Collections.unmodifiableMap(followers), now, generation);
+                }
             } catch (Throwable failure) {
                 forgetTaken(viewer, generation);
                 throw failure;
@@ -361,12 +400,24 @@ public final class Unfollowers {
         return new Record(new LinkedHashMap<>(followers), when, left);
     }
 
-    /** Compares the list taken with the one kept for [viewer], and keeps the result. Never throws. */
+    /** {@link #take} for a list whose rows said nothing about whether you follow them. */
     public static void take(Context application, String viewer, Map<String, String> followers, long when) {
-        take(application, viewer, followers, when, 0);
+        take(application, viewer, followers, Collections.emptyMap(), followers.size(), when, 0);
     }
 
-    private static void take(Context application, String viewer, Map<String, String> followers, long when, long generation) {
+    /**
+     * Compares the list taken with the one kept for [viewer], keeps the result and adds the check to
+     * the follower history ({@link FollowerHistory}), whose changes then go to the screen or the
+     * notification ({@link FollowersCheck#taken}). Never throws.
+     */
+    public static void take(Context application, String viewer, Map<String, String> followers,
+                            Map<String, Boolean> following, int count, long when) {
+        take(application, viewer, followers, following, count, when, 0);
+    }
+
+    private static void take(Context application, String viewer, Map<String, String> followers,
+                             Map<String, Boolean> following, int count, long when, long generation) {
+        FollowerHistory.Change change = null;
         synchronized (LOCK) {
             if (generation != 0) {
                 if (!current(viewer, generation)) return;
@@ -378,15 +429,10 @@ public final class Unfollowers {
             try {
                 Record before = read(file(application, hash(viewer)));
                 Record after = compare(before, followers, when);
+                change = FollowerHistory.record(application, viewer, before, followers, following, count, when);
                 write(file(application, hash(viewer)), after);
                 writeLast(application, hash(viewer));
-                try {
-                    List<FollowerHistory.Change> changes = FollowerHistory.changes(before, followers, when);
-                    FollowerHistory.add(historyFile(application, hash(viewer)), changes);
-                    FollowerAlert.raise(application, changes);
-                } catch (Throwable failure) {
-                    HookStatus.threw(FamilyNames.FRIENDSHIP_STATUS, SAVE, failure);
-                }
+                if (change != null) FollowerAlert.raise(application, change);
                 int listed = after.left.size();
                 Logger.printDebug(() -> "Recent unfollowers: took " + followers.size() + " followers, " + listed + " listed as gone");
             } catch (Throwable failure) {
@@ -394,6 +440,7 @@ public final class Unfollowers {
                 HookStatus.threw(FamilyNames.FRIENDSHIP_STATUS, SAVE, failure);
             }
         }
+        if (change != null) FollowersCheck.taken(application, change);
     }
 
     /**
@@ -418,26 +465,15 @@ public final class Unfollowers {
     }
 
     /** The follower and unfollower changes logged for the account to show, newest first. Never throws. */
-    public static List<FollowerHistory.Change> history(Context context) {
-        if (context == null) return Collections.emptyList();
-        Context application = context.getApplicationContext() != null ? context.getApplicationContext() : context;
-        synchronized (LOCK) {
-            try {
-                String signedIn = HiddenAccounts.signedInAccount();
-                String hash = signedIn != null && !signedIn.isEmpty() ? hash(signedIn) : readLast(application);
-                if (hash == null || hash.isEmpty()) return Collections.emptyList();
-                return FollowerHistory.read(historyFile(application, hash));
-            } catch (Throwable failure) {
-                HookStatus.threw(FamilyNames.FRIENDSHIP_STATUS, READ, failure);
-                return Collections.emptyList();
-            }
-        }
+    public static FollowerHistory.Log history(Context context) {
+        return FollowerHistory.shown(context);
     }
 
     /** Deletes every account's kept list and unfollowers. Answers whether they're gone. Never throws. */
     public static boolean clear(Context context) {
         if (context == null) return false;
         Context application = context.getApplicationContext() != null ? context.getApplicationContext() : context;
+        FollowersChip.reload(application);
         synchronized (LOCK) {
             try {
                 forgetTaken();
@@ -536,6 +572,12 @@ public final class Unfollowers {
         try (Writer out = new OutputStreamWriter(new FileOutputStream(last), StandardCharsets.UTF_8)) {
             out.write(hash);
         }
+    }
+
+    /** The hash naming the last account whose list was taken, or null. */
+    @Nullable
+    static String lastHash(Context application) throws IOException {
+        return readLast(application);
     }
 
     @Nullable

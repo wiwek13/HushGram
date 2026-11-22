@@ -2795,3 +2795,60 @@ Waiting for the saves before it	Menunggu simpanan sebelumnya
 Even on silent	Juga saat senyap
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	Video feed tetap mulai dengan suara saat ponsel dalam mode senyap atau getar. Hanya volume media yang dihitung.
+
+%1$d followed again	%1$d mengikuti lagi
+%1$d new	%1$d baru
+%1$d people unfollowed you	%1$d orang berhenti mengikutimu
+%1$d unfollowed	%1$d berhenti mengikuti
+%1$d unfollowed you	%1$d berhenti mengikutimu
+%1$s unfollowed you	%1$s berhenti mengikutimu
+1 followed again	1 mengikuti lagi
+1 new	1 baru
+1 person unfollowed you	1 orang berhenti mengikutimu
+1 unfollowed	1 berhenti mengikuti
+1 unfollowed you	1 berhenti mengikutimu
+All %1$d	Semua %1$d
+Check now	Periksa sekarang
+Check now couldn't find your followers count.	Periksa sekarang tidak menemukan jumlah pengikutmu.
+Check now couldn't open your Followers list.	Periksa sekarang tidak bisa membuka daftar Pengikutmu.
+Check now needs Instagram's main screen. Open your profile and try again.	Periksa sekarang membutuhkan layar utama Instagram. Buka profilmu dan coba lagi.
+Check now ran out of time before your Followers list finished loading.	Periksa sekarang kehabisan waktu sebelum daftar Pengikutmu selesai dimuat.
+Check now stopped: your Followers list closed.	Periksa sekarang berhenti: daftar Pengikutmu ditutup.
+Check now stopped: your Followers list stopped loading.	Periksa sekarang berhenti: daftar Pengikutmu berhenti memuat.
+Checked just now. No one left or joined since the check before.	Baru saja diperiksa. Tidak ada yang pergi atau bergabung sejak pemeriksaan sebelumnya.
+Checked just now: %1$s.	Baru saja diperiksa: %1$s.
+Checking your followers…	Memeriksa pengikutmu…
+Copied %1$s	%1$s disalin
+Couldn't save the follower history.	Tidak bisa menyimpan riwayat pengikut.
+Export	Ekspor
+Export needs Android 10 or newer.	Ekspor membutuhkan Android 10 atau yang lebih baru.
+Followed again %1$d	Mengikuti lagi %1$d
+Followed you again	Mengikutimu lagi
+Follower history button	Tombol riwayat pengikut
+Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.	Instagram menampilkan %1$d dari %2$d pengikutmu, terlalu sedikit untuk dibandingkan. Coba lagi nanti.
+Last checked\n%1$s	Terakhir diperiksa\n%1$s
+New %1$d	Baru %1$d
+No changes yet. Each time you check, anyone who left or joined shows up here.	Belum ada perubahan. Setiap kali kamu memeriksa, siapa pun yang pergi atau bergabung muncul di sini.
+Not checked yet	Belum diperiksa
+Nothing here with this filter.	Tidak ada apa pun dengan filter ini.
+Notify me when someone unfollows	Beri tahu saat seseorang berhenti mengikuti
+Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.	Menaruh tombol di bawah angka di profilmu sendiri yang membuka riwayat pengikut dan menunjukkan berapa orang yang pergi sejak terakhir kamu melihat.
+Reading…	Membaca…
+Saved to Download/HushGram/%1$s	Disimpan ke Download/HushGram/%1$s
+Started following you	Mulai mengikutimu
+Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.	Ketuk Periksa sekarang, atau gulir daftar Pengikut milikmu sampai akhir. Tampilan pertama itu menjadi titik awal, dan siapa pun yang pergi setelahnya muncul di sini.
+Turn on Recent unfollowers in HushGram settings > Profiles first.	Aktifkan Berhenti mengikuti baru-baru ini di Pengaturan HushGram > Profil terlebih dahulu.
+Unfollowed %1$d	Berhenti mengikuti %1$d
+Unfollowed you	Berhenti mengikutimu
+Unfollowers	Berhenti mengikuti
+When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.	Saat pemeriksaan seluruh daftar Pengikutmu menemukan seseorang hilang, notifikasi memberi tahu siapa. Mengetuknya membuka riwayat pengikut.
+Who left your Followers list, found by HushGram's follower history	Siapa yang keluar dari daftar Pengikutmu, ditemukan oleh riwayat pengikut HushGram
+You follow them %1$d	Kamu ikuti %1$d
+between %1$s and %2$s	antara %1$s dan %2$s
+by %1$s	sebelum %1$s
+followed again	mengikuti lagi
+followers at the last check	pengikut pada pemeriksaan terakhir
+new	baru
+today, %1$s	hari ini, %1$s
+unfollowed	berhenti mengikuti
+yesterday, %1$s	kemarin, %1$s

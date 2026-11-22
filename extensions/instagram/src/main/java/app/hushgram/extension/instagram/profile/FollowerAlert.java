@@ -44,17 +44,17 @@ public final class FollowerAlert {
         }
     }
 
-    /** Raises the notification for the people in [changes] who left. Does nothing when none did. Never throws. */
-    static void raise(Context application, List<FollowerHistory.Change> changes) {
+    /** Raises the notification for the people in [change] who left. Does nothing when none did. Never throws. */
+    static void raise(Context application, FollowerHistory.Change change) {
         try {
-            if (application == null || changes == null || !on()) return;
+            if (application == null || change == null || !on()) return;
             List<String> names = new ArrayList<>();
             int gone = 0;
-            for (FollowerHistory.Change change : changes) {
-                if (change.kind != FollowerHistory.UNFOLLOWED) continue;
+            for (FollowerHistory.Event event : change.added) {
+                if (event.kind != FollowerHistory.Kind.LEFT) continue;
                 gone++;
-                if (names.size() < NAMES && change.username != null && !change.username.isEmpty()) {
-                    names.add("@" + change.username);
+                if (names.size() < NAMES && event.username != null && !event.username.isEmpty()) {
+                    names.add("@" + event.username);
                 }
             }
             if (gone == 0) return;

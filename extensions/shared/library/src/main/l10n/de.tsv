@@ -2795,3 +2795,60 @@ Waiting for the saves before it	Wartet auf die Speicherungen davor
 Even on silent	Auch im Lautlos-Modus
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	Feed-Videos starten auch mit Ton, wenn das Handy lautlos oder auf Vibration steht. Nur die Medienlautstärke zählt.
+
+%1$d followed again	%1$d wieder gefolgt
+%1$d new	%1$d neu
+%1$d people unfollowed you	%1$d Personen sind dir entfolgt
+%1$d unfollowed	%1$d entfolgt
+%1$d unfollowed you	%1$d sind dir entfolgt
+%1$s unfollowed you	%1$s ist dir entfolgt
+1 followed again	1 wieder gefolgt
+1 new	1 neu
+1 person unfollowed you	1 Person ist dir entfolgt
+1 unfollowed	1 entfolgt
+1 unfollowed you	1 ist dir entfolgt
+All %1$d	Alle %1$d
+Check now	Jetzt prüfen
+Check now couldn't find your followers count.	Jetzt prüfen hat deine Follower-Anzahl nicht gefunden.
+Check now couldn't open your Followers list.	Jetzt prüfen konnte deine Follower-Liste nicht öffnen.
+Check now needs Instagram's main screen. Open your profile and try again.	Jetzt prüfen braucht den Hauptbildschirm von Instagram. Öffne dein Profil und versuch es noch einmal.
+Check now ran out of time before your Followers list finished loading.	Jetzt prüfen hatte keine Zeit mehr, bevor deine Follower-Liste fertig geladen war.
+Check now stopped: your Followers list closed.	Jetzt prüfen wurde beendet: Deine Follower-Liste wurde geschlossen.
+Check now stopped: your Followers list stopped loading.	Jetzt prüfen wurde beendet: Deine Follower-Liste lädt nicht mehr.
+Checked just now. No one left or joined since the check before.	Gerade geprüft. Seit der letzten Prüfung ist niemand gegangen oder dazugekommen.
+Checked just now: %1$s.	Gerade geprüft: %1$s.
+Checking your followers…	Deine Follower werden geprüft…
+Copied %1$s	%1$s kopiert
+Couldn't save the follower history.	Der Follower-Verlauf konnte nicht gespeichert werden.
+Export	Exportieren
+Export needs Android 10 or newer.	Export braucht Android 10 oder neuer.
+Followed again %1$d	Wieder gefolgt %1$d
+Followed you again	Folgt dir wieder
+Follower history button	Schaltfläche für den Follower-Verlauf
+Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.	Instagram hat %1$d von deinen %2$d Followern angezeigt, zu wenige zum Vergleichen. Versuch es später noch einmal.
+Last checked\n%1$s	Zuletzt geprüft\n%1$s
+New %1$d	Neu %1$d
+No changes yet. Each time you check, anyone who left or joined shows up here.	Noch keine Änderungen. Bei jeder Prüfung erscheint hier, wer gegangen oder dazugekommen ist.
+Not checked yet	Noch nicht geprüft
+Nothing here with this filter.	Mit diesem Filter gibt es hier nichts.
+Notify me when someone unfollows	Benachrichtigen, wenn mir jemand entfolgt
+Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.	Setzt unter die Zahlen auf deinem eigenen Profil eine Schaltfläche, die den Follower-Verlauf öffnet und anzeigt, wie viele seit deinem letzten Blick gegangen sind.
+Reading…	Wird gelesen…
+Saved to Download/HushGram/%1$s	Gespeichert unter Download/HushGram/%1$s
+Started following you	Folgt dir jetzt
+Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.	Tippe auf Jetzt prüfen oder scrolle deine eigene Follower-Liste bis zum Ende. Dieser erste Blick ist der Ausgangspunkt, und alle, die danach gehen, erscheinen hier.
+Turn on Recent unfollowers in HushGram settings > Profiles first.	Schalte zuerst Kürzlich entfolgt in HushGram-Einstellungen > Profile ein.
+Unfollowed %1$d	Entfolgt %1$d
+Unfollowed you	Ist dir entfolgt
+Unfollowers	Entfolgt
+When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.	Wenn ein Blick auf deine ganze Follower-Liste jemanden vermisst, sagt eine Benachrichtigung, wer. Ein Tippen darauf öffnet den Follower-Verlauf.
+Who left your Followers list, found by HushGram's follower history	Wer deine Follower-Liste verlassen hat, gefunden vom Follower-Verlauf von HushGram
+You follow them %1$d	Von dir gefolgt %1$d
+between %1$s and %2$s	zwischen %1$s und %2$s
+by %1$s	bis %1$s
+followed again	wieder gefolgt
+followers at the last check	Follower bei der letzten Prüfung
+new	neu
+today, %1$s	heute, %1$s
+unfollowed	entfolgt
+yesterday, %1$s	gestern, %1$s

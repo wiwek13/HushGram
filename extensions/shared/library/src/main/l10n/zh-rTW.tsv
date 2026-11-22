@@ -2798,3 +2798,60 @@ Waiting for the saves before it	正在等待前面的儲存
 Even on silent	靜音時也播放聲音
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	手機處於靜音或震動模式時，動態影片也會以有聲方式開始播放。只看媒體音量.
+
+%1$d followed again	%1$d 人重新追蹤
+%1$d new	%1$d 個新粉絲
+%1$d people unfollowed you	%1$d 人取消追蹤了你
+%1$d unfollowed	%1$d 人取消追蹤
+%1$d unfollowed you	%1$d 人取消追蹤了你
+%1$s unfollowed you	%1$s 取消追蹤了你
+1 followed again	1 人重新追蹤
+1 new	1 個新粉絲
+1 person unfollowed you	1 人取消追蹤了你
+1 unfollowed	1 人取消追蹤
+1 unfollowed you	1 人取消追蹤了你
+All %1$d	全部 %1$d
+Check now	立即檢查
+Check now couldn't find your followers count.	立即檢查找不到你的粉絲數。
+Check now couldn't open your Followers list.	立即檢查無法開啟你的粉絲名單。
+Check now needs Instagram's main screen. Open your profile and try again.	立即檢查需要 Instagram 主畫面。請開啟你的個人檔案後重試。
+Check now ran out of time before your Followers list finished loading.	在粉絲名單載入完成前，立即檢查超時了。
+Check now stopped: your Followers list closed.	立即檢查已停止：你的粉絲名單已關閉。
+Check now stopped: your Followers list stopped loading.	立即檢查已停止：你的粉絲名單已停止載入。
+Checked just now. No one left or joined since the check before.	剛剛檢查完畢。自上次檢查以來沒有新增或離開的人。
+Checked just now: %1$s.	剛剛檢查完畢：%1$s。
+Checking your followers…	正在檢查你的粉絲…
+Copied %1$s	已複製 %1$s
+Couldn't save the follower history.	無法儲存粉絲歷史紀錄。
+Export	匯出
+Export needs Android 10 or newer.	匯出功能需要 Android 10 或更高版本。
+Followed again %1$d	再次追蹤 %1$d
+Followed you again	重新追蹤了你
+Follower history button	粉絲歷史紀錄按鈕
+Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.	Instagram 僅顯示了 %2$d 名粉絲中的 %1$d 名，數量太少無法比對。請稍後重試。
+Last checked\n%1$s	上次檢查\n%1$s
+New %1$d	新增 %1$d
+No changes yet. Each time you check, anyone who left or joined shows up here.	尚無變動。每次檢查後，離開或新增的人都會顯示在這裡。
+Not checked yet	尚未檢查
+Nothing here with this filter.	此篩選條件下沒有內容。
+Notify me when someone unfollows	有人取消追蹤時通知我
+Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.	在個人檔案數據下方新增一個按鈕，用於開啟粉絲歷史紀錄並顯示自上次查看以來有多少人取消追蹤。
+Reading…	正在讀取…
+Saved to Download/HushGram/%1$s	已儲存至 Download/HushGram/%1$s
+Started following you	開始追蹤你
+Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.	點擊「立即檢查」，或將你自己的粉絲名單滑動到底部。第一次查看作為基準，之後離開的人都會顯示在這裡。
+Turn on Recent unfollowers in HushGram settings > Profiles first.	請先在 HushGram 設定 > 個人檔案 中開啟「最近取消追蹤」。
+Unfollowed %1$d	已取消追蹤 %1$d
+Unfollowed you	取消追蹤了你
+Unfollowers	取消追蹤者
+When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.	當查看完整粉絲名單發現有人離開時，會發送通知告知是誰。點擊通知可開啟粉絲歷史紀錄。
+Who left your Followers list, found by HushGram's follower history	誰離開了你的粉絲名單（由 HushGram 粉絲歷史紀錄發現）
+You follow them %1$d	你追蹤了他們 %1$d
+between %1$s and %2$s	在 %1$s 與 %2$s 之間
+by %1$s	截至 %1$s
+followed again	再次追蹤
+followers at the last check	上次檢查時的粉絲
+new	新
+today, %1$s	今天，%1$s
+unfollowed	已取消追蹤
+yesterday, %1$s	昨天，%1$s

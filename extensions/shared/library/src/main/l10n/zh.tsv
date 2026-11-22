@@ -2798,3 +2798,60 @@ Waiting for the saves before it	正在等待前面的保存
 Even on silent	静音时也播放声音
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	手机处于静音或振动模式时，动态视频也会带声音开始播放。只看媒体音量.
+
+%1$d followed again	%1$d 人重新关注
+%1$d new	%1$d 个新粉丝
+%1$d people unfollowed you	%1$d 人取关了你
+%1$d unfollowed	%1$d 人取关
+%1$d unfollowed you	%1$d 人取关了你
+%1$s unfollowed you	%1$s 取关了你
+1 followed again	1 人重新关注
+1 new	1 个新粉丝
+1 person unfollowed you	1 人取关了你
+1 unfollowed	1 人取关
+1 unfollowed you	1 人取关了你
+All %1$d	全部 %1$d
+Check now	立即检查
+Check now couldn't find your followers count.	立即检查找不到你的粉丝数。
+Check now couldn't open your Followers list.	立即检查无法打开你的粉丝列表。
+Check now needs Instagram's main screen. Open your profile and try again.	立即检查需要 Instagram 主界面。请打开你的个人主页后重试。
+Check now ran out of time before your Followers list finished loading.	在粉丝列表加载完成前，立即检查超时了。
+Check now stopped: your Followers list closed.	立即检查已停止：你的粉丝列表已关闭。
+Check now stopped: your Followers list stopped loading.	立即检查已停止：你的粉丝列表已停止加载。
+Checked just now. No one left or joined since the check before.	刚刚检查完毕。自上次检查以来没有新增或离开的人。
+Checked just now: %1$s.	刚刚检查完毕：%1$s。
+Checking your followers…	正在检查你的粉丝…
+Copied %1$s	已复制 %1$s
+Couldn't save the follower history.	无法保存粉丝历史记录。
+Export	导出
+Export needs Android 10 or newer.	导出功能需要 Android 10 或更高版本。
+Followed again %1$d	再次关注 %1$d
+Followed you again	重新关注了你
+Follower history button	粉丝历史记录按钮
+Instagram showed %1$d of your %2$d followers, too few to compare. Try again later.	Instagram 仅显示了 %2$d 名粉丝中的 %1$d 名，数量太少无法对比。请稍后重试。
+Last checked\n%1$s	上次检查\n%1$s
+New %1$d	新增 %1$d
+No changes yet. Each time you check, anyone who left or joined shows up here.	尚无变动。每次检查后，离开或新增的人都会显示在这里。
+Not checked yet	尚未检查
+Nothing here with this filter.	此筛选条件下没有内容。
+Notify me when someone unfollows	有人取关时通知我
+Puts a button under the counts on your own profile that opens the follower history and says how many people left since you last looked.	在个人主页数据下方添加一个按钮，用于打开粉丝历史记录并显示自上次查看以来有多少人取关。
+Reading…	正在读取…
+Saved to Download/HushGram/%1$s	已保存至 Download/HushGram/%1$s
+Started following you	开始关注你
+Tap Check now, or scroll your own Followers list to the end. That first look is the starting point, and anyone who leaves after it shows up here.	点击“立即检查”，或将你自己的粉丝列表滑动到底部。第一次查看作为基准，之后离开的人都会显示在这里。
+Turn on Recent unfollowers in HushGram settings > Profiles first.	请先在 HushGram 设置 > 个人主页 中开启“最近取关”。
+Unfollowed %1$d	已取关 %1$d
+Unfollowed you	取关了你
+Unfollowers	取关者
+When a look at your whole Followers list finds someone gone, a notification says who. Tapping it opens the follower history.	当查看完整粉丝列表发现有人离开时，会发送通知告知是谁。点击通知可打开粉丝历史记录。
+Who left your Followers list, found by HushGram's follower history	谁离开了你的粉丝列表（由 HushGram 粉丝历史记录发现）
+You follow them %1$d	你关注了他们 %1$d
+between %1$s and %2$s	在 %1$s 与 %2$s 之间
+by %1$s	截至 %1$s
+followed again	再次关注
+followers at the last check	上次检查时的粉丝
+new	新
+today, %1$s	今天，%1$s
+unfollowed	已取关
+yesterday, %1$s	昨天，%1$s
