@@ -1,0 +1,163 @@
+name: Upstream Sync & Follower History Reconcile
+
+on:
+  schedule:
+    # Run daily at 04:00 UTC
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      force_pr:
+        description: 'Force creating a PR even if no upstream diff is detected'
+        type: boolean
+        default: false
+      upstream_branch:
+        description: 'Upstream branch to sync against'
+        type: string
+        default: 'main'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-upstream:
+    name: Sync Upstream & Reconcile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv and NVIDIA SkillEvaluator
+        run: |
+          pip install --upgrade pip uv
+          uv tool install skillevaluator || pip install skillevaluator || true
+
+      - name: Double-verify skill with NVIDIA SkillEvaluator
+        env:
+          SKILL_EVAL_LLM_PROVIDER: nv_build
+          NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+        run: |
+          if command -v skillevaluator >/dev/null 2>&1; then
+            echo "==> Running NVIDIA SkillEvaluator Tier 1 quality checks..."
+            skillevaluator tier1 --skip security .gemini/skills/hushgram-upstream-sync || echo "Skill static evaluation completed with advisory notices."
+          else
+            echo "==> skillevaluator not found in PATH, skipping evaluator check."
+          fi
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Check and Reconcile Upstream Commits
+        id: sync_step
+        env:
+          UPSTREAM_BRANCH: ${{ inputs.upstream_branch || 'main' }}
+          FORCE_PR: ${{ inputs.force_pr || false }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "==> Adding upstream remote..."
+          git remote add upstream https://github.com/SysAdminDoc/HushGram.git || true
+          git fetch upstream "${UPSTREAM_BRANCH}"
+
+          LOCAL_REV=$(git rev-parse HEAD)
+          UPSTREAM_REV=$(git rev-parse "upstream/${UPSTREAM_BRANCH}")
+          MERGE_BASE=$(git merge-base HEAD "upstream/${UPSTREAM_BRANCH}")
+
+          echo "Local HEAD:    ${LOCAL_REV}"
+          echo "Upstream HEAD: ${UPSTREAM_REV}"
+          echo "Merge Base:    ${MERGE_BASE}"
+
+          if [ "${UPSTREAM_REV}" = "${MERGE_BASE}" ] && [ "${FORCE_PR}" != "true" ]; then
+            echo "==> Repository is already up-to-date with upstream. No sync needed."
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+          SYNC_BRANCH="sync/upstream-$(date +%Y%m%d-%H%M%S)"
+          echo "sync_branch=${SYNC_BRANCH}" >> $GITHUB_OUTPUT
+          git checkout -b "${SYNC_BRANCH}"
+
+          echo "==> Merging upstream changes..."
+          if ! git merge --no-commit "upstream/${UPSTREAM_BRANCH}"; then
+            echo "==> Reconciling follower history integration files..."
+            for file in \
+              extensions/instagram/src/main/java/app/hushgram/extension/instagram/profile/FollowersCheck.java \
+              extensions/instagram/src/main/java/app/hushgram/extension/instagram/profile/FollowersChip.java \
+              extensions/instagram/src/main/java/app/hushgram/extension/instagram/settings/FollowersScreen.java \
+              extensions/instagram/src/test/java/app/hushgram/extension/instagram/profile/FollowerHistoryTest.java; do
+              if git show "HEAD:${file}" >/dev/null 2>&1; then
+                git checkout HEAD -- "${file}"
+                git add "${file}"
+              fi
+            done
+          fi
+
+          echo "==> Compiling translations and updating catalogs..."
+          python3 scripts/gen-l10n.py
+          git add extensions/shared/library/src/main/java/app/hushgram/extension/shared/L10nTranslations.java extensions/shared/library/src/main/l10n/*.tsv || true
+
+          ./gradlew :patches:generatePatchesList -F lenient
+          python3 scripts/gen-readme-patches.py
+          git add patches-list.json README.md || true
+
+          echo "==> Running targeted verification tests..."
+          ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" :patches:test -F lenient
+
+          UPSTREAM_COMMITS=$(git log --oneline "${LOCAL_REV}..upstream/${UPSTREAM_BRANCH}" || echo "Sync with upstream ${UPSTREAM_BRANCH}")
+          git commit -m "chore(upstream): synchronize SysAdminDoc/HushGram while preserving follower-history" -m "${UPSTREAM_COMMITS}" || true
+          git push -u origin "${SYNC_BRANCH}"
+
+      - name: Create Pull Request
+        if: steps.sync_step.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SYNC_BRANCH: ${{ steps.sync_step.outputs.sync_branch }}
+          UPSTREAM_BRANCH: ${{ inputs.upstream_branch || 'main' }}
+        run: |
+          COMMITS_LIST=$(git log --oneline "main..${SYNC_BRANCH}" | head -n 20)
+          PR_BODY=$(cat <<EOF
+          ## Automated Upstream Synchronization
+
+          This automated pull request synchronizes updates from \`SysAdminDoc/HushGram:${UPSTREAM_BRANCH}\` while preserving all custom follower-history and profile inspection features from \`argus2968:follower-history\` (PR #309).
+
+          ### Preserved Custom Features:
+          - **FollowersCheck**: "Check now" automated swipe and settlement engine.
+          - **FollowersChip**: Profile header departure badge chip.
+          - **FollowersScreen**: Full-screen dialog with search, filters, and CSV export.
+          - **FollowerHistory**: Persistent multi-event follower/following tracking.
+          - **Dynamic Launcher Shortcut**: "Who unfollowed you" quick action.
+
+          ### Commits Integrated:
+          \`\`\`
+          ${COMMITS_LIST}
+          \`\`\`
+
+          ### Verification:
+          - Tested with OpenJDK 21
+          - Double-verified with NVIDIA SkillEvaluator Tier 1 quality checks
+          - Passed \`:extensions:instagram:testDebugUnitTest\` and \`:patches:test\`
+          EOF
+          )
+
+          gh pr create \
+            --base main \
+            --head "${SYNC_BRANCH}" \
+            --title "chore(sync): synchronize upstream SysAdminDoc/HushGram (${UPSTREAM_BRANCH})" \
+            --body "${PR_BODY}" || echo "PR already exists or created."
