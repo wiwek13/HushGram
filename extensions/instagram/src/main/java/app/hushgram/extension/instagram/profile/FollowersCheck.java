@@ -59,11 +59,11 @@ public final class FollowersCheck {
     static final String CHANNEL = "hushgram_unfollowers";
     static final int NOTIFICATION_ID = 0x48474601;
 
-    private static final long STEP_MS = 550;
-    private static final long FIRST_LOOK_MS = 1500;
-    private static final long TIMEOUT_MS = 4 * 60_000L;
-    /** Steps the list may sit still while Instagram loads its next page, about twenty seconds. */
-    private static final int MAX_STILL = 36;
+    private static final long STEP_BASE_MS = 1600;
+    private static final long FIRST_LOOK_MS = 2000;
+    private static final long TIMEOUT_MS = 12 * 60_000L;
+    /** Steps the list may sit still while Instagram loads its next page, about fifty seconds. */
+    private static final int MAX_STILL = 25;
     /** How far up from a row the scrolling list is looked for. */
     private static final int MAX_DEPTH = 12;
 
@@ -79,6 +79,7 @@ public final class FollowersCheck {
     private static WeakReference<Activity> host = new WeakReference<>(null);
     private static int still;
     private static boolean stepQueued;
+    private static int swipeCount;
 
     private FollowersCheck() {
     }
@@ -114,6 +115,7 @@ public final class FollowersCheck {
             startedAt = SystemClock.elapsedRealtime();
             stage = Stage.PROFILE;
             still = 0;
+            swipeCount = 0;
             Logger.printInfo(() -> "Check now: started");
             if (tab != null) tab.performClick();
             // Already on your profile, the header may not bind again for the hook to find it.
@@ -140,7 +142,7 @@ public final class FollowersCheck {
         if (count != null) {
             openFollowers(count);
         } else if (!timedOut()) {
-            Utils.runOnMainThreadDelayed(FollowersCheck::lookForCount, STEP_MS);
+            Utils.runOnMainThreadDelayed(FollowersCheck::lookForCount, STEP_BASE_MS);
         } else {
             fail(L10n.t("Check now couldn't find your followers count."));
         }
@@ -181,7 +183,17 @@ public final class FollowersCheck {
     private static void queueStep() {
         if (stepQueued) return;
         stepQueued = true;
-        Utils.runOnMainThreadDelayed(FollowersCheck::step, STEP_MS);
+        Utils.runOnMainThreadDelayed(FollowersCheck::step, nextStepDelay());
+    }
+
+    private static long nextStepDelay() {
+        swipeCount++;
+        // Natural reading pause every 6-9 swipes to mimic real human browsing
+        if (swipeCount % (6 + (int) (Math.random() * 4)) == 0) {
+            return 2800L + (long) (Math.random() * 1400L);
+        }
+        // Base delay with organic jitter (1400ms - 2200ms)
+        return STEP_BASE_MS + (long) ((Math.random() - 0.2) * 700L);
     }
 
     private static void step() {
@@ -211,22 +223,34 @@ public final class FollowersCheck {
     }
 
     /**
-     * One quick swipe up on [list], given to it as touches the way a finger's would be, from near its
-     * bottom to near its top: whatever kind of list Instagram built, it scrolls and flings as it does
-     * for a thumb. The list's own scroll call isn't used, since on a list that doesn't scroll by it,
-     * it moves the whole view off the screen instead.
+     * One humanized swipe up on [list], given to it as touch events mimicking human thumb physics
+     * with organic easing, randomized trajectory, and subtle horizontal wobble to avoid anti-bot detection.
      */
     static void swipeUp(View list) {
         long down = SystemClock.uptimeMillis();
-        float x = list.getWidth() / 2f;
-        float from = list.getHeight() * 0.85f;
-        float to = list.getHeight() * 0.15f;
-        int moves = 8;
-        dispatch(list, down, down, MotionEvent.ACTION_DOWN, x, from);
+        float w = list.getWidth();
+        float h = list.getHeight();
+        if (w <= 0 || h <= 0) return;
+
+        // Natural thumb contact point: slightly offset from center with slight lateral drift
+        float startX = w * (0.46f + (float) Math.random() * 0.08f);
+        float endX = startX + (float) ((Math.random() - 0.5) * w * 0.04f);
+        float from = h * (0.78f + (float) Math.random() * 0.08f);
+        float to = h * (0.18f + (float) Math.random() * 0.08f);
+
+        int moves = 12 + (int) (Math.random() * 5);
+        long stepInterval = 12L + (long) (Math.random() * 6);
+
+        dispatch(list, down, down, MotionEvent.ACTION_DOWN, startX, from);
         for (int i = 1; i <= moves; i++) {
-            dispatch(list, down, down + i * 10L, MotionEvent.ACTION_MOVE, x, from + (to - from) * i / moves);
+            float progress = (float) i / moves;
+            // Smooth sine easing for natural deceleration
+            float ease = (float) Math.sin(progress * Math.PI / 2.0);
+            float currentX = startX + (endX - startX) * progress;
+            float currentY = from + (to - from) * ease;
+            dispatch(list, down, down + i * stepInterval, MotionEvent.ACTION_MOVE, currentX, currentY);
         }
-        dispatch(list, down, down + (moves + 1) * 10L, MotionEvent.ACTION_UP, x, to);
+        dispatch(list, down, down + (moves + 1) * stepInterval, MotionEvent.ACTION_UP, endX, to);
     }
 
     private static void dispatch(View view, long down, long at, int action, float x, float y) {
@@ -245,6 +269,7 @@ public final class FollowersCheck {
     private static void fail(String why) {
         if (stage == Stage.IDLE) return;
         stage = Stage.IDLE;
+        swipeCount = 0;
         Logger.printInfo(() -> "Check now: " + why);
         Utils.showToastLong(why);
     }
