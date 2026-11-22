@@ -57,7 +57,8 @@ echo "Merge Base:    ${MERGE_BASE}"
 if [ "${UPSTREAM_REV}" = "${MERGE_BASE}" ]; then
     echo "==> Repository is already up-to-date with upstream. Running validation check..."
     python3 scripts/gen-l10n.py
-    ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" :patches:test -F lenient
+    ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" -F lenient
+    ./gradlew :patches:test -F lenient
     echo "==> Up-to-date and all tests passed!"
     exit 0
 fi
@@ -98,6 +99,7 @@ python3 scripts/gen-readme-patches.py
 git add patches-list.json README.md 2>/dev/null || true
 
 echo "==> Executing targeted test verification suite..."
-./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" :patches:test -F lenient
+./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" -F lenient
+./gradlew :patches:test -F lenient
 
 echo "==> Sync and verification completed successfully!"

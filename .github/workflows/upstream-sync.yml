@@ -118,7 +118,8 @@ jobs:
           git add patches-list.json README.md || true
 
           echo "==> Running targeted verification tests..."
-          ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" :patches:test -F lenient
+          ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" -F lenient
+          ./gradlew :patches:test -F lenient
 
           UPSTREAM_COMMITS=$(git log --oneline "${LOCAL_REV}..upstream/${UPSTREAM_BRANCH}" || echo "Sync with upstream ${UPSTREAM_BRANCH}")
           git commit -m "chore(upstream): synchronize SysAdminDoc/HushGram while preserving follower-history" -m "${UPSTREAM_COMMITS}" || true
