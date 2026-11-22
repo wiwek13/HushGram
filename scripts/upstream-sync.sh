@@ -59,6 +59,8 @@ if [ "${UPSTREAM_REV}" = "${MERGE_BASE}" ]; then
     python3 scripts/gen-l10n.py
     ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" -F lenient
     ./gradlew :patches:test -F lenient
+    echo "==> Triggering skill self-improvement and context update..."
+    python3 scripts/evolve-skill.py || true
     echo "==> Up-to-date and all tests passed!"
     exit 0
 fi
@@ -101,5 +103,13 @@ git add patches-list.json README.md 2>/dev/null || true
 echo "==> Executing targeted test verification suite..."
 ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" -F lenient
 ./gradlew :patches:test -F lenient
+
+echo "==> Executing skill self-improvement and context updating engine..."
+if [ -f "scripts/evolve-skill.py" ]; then
+    python3 scripts/evolve-skill.py
+elif [ -f ".gemini/skills/hushgram-upstream-sync/scripts/evolve-skill.py" ]; then
+    python3 .gemini/skills/hushgram-upstream-sync/scripts/evolve-skill.py
+fi
+git add .gemini/skills/hushgram-upstream-sync/ 2>/dev/null || true
 
 echo "==> Sync and verification completed successfully!"

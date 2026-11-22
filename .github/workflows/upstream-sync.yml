@@ -121,6 +121,10 @@ jobs:
           ./gradlew :extensions:instagram:testDebugUnitTest --tests "app.hushgram.extension.instagram.profile.*" -F lenient
           ./gradlew :patches:test -F lenient
 
+          echo "==> Triggering skill self-improvement and context updating..."
+          python3 scripts/evolve-skill.py || python3 .gemini/skills/hushgram-upstream-sync/scripts/evolve-skill.py || true
+          git add .gemini/skills/hushgram-upstream-sync/ || true
+
           UPSTREAM_COMMITS=$(git log --oneline "${LOCAL_REV}..upstream/${UPSTREAM_BRANCH}" || echo "Sync with upstream ${UPSTREAM_BRANCH}")
           git commit -m "chore(upstream): synchronize SysAdminDoc/HushGram while preserving follower-history" -m "${UPSTREAM_COMMITS}" || true
           git push -u origin "${SYNC_BRANCH}"
