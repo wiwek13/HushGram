@@ -984,6 +984,15 @@ public class Settings extends BaseSettings {
             new StringSetting("hushgram_locked_collections", "", false, false);
 
     /**
+     * The ids Instagram gives the collections on {@link #LOCKED_COLLECTIONS}, each with its name
+     * ({@link app.hushgram.extension.instagram.direct.LockedCollectionItems}), a line for each, so
+     * Saved's grids know a locked collection's posts before its name has loaded. Only remembered, never
+     * a switch, and a backup leaves it out like the list.
+     */
+    public static final StringSetting LOCKED_COLLECTION_IDS =
+            new StringSetting("hushgram_locked_collection_ids", "", false, false);
+
+    /**
      * The chats hidden one at a time ({@link app.hushgram.extension.instagram.direct.HiddenChats}),
      * in the same lines as {@link #LOCKED_CHATS}. A chat on the list is the switch. It isn't kept
      * while HushGram is paused, so a paused Instagram shows every chat again, and a backup leaves it
@@ -1038,7 +1047,7 @@ public class Settings extends BaseSettings {
         // The locks keep answering what you chose while HushGram is paused or in safe mode, so
         // neither one, nor the marker file that pauses it from outside, gets around them.
         Setting.keepWhenPaused(LOCK_MESSAGES, LOCK_APP, LOCK_SAVED, LOCK_EACH_CHAT, LOCK_AGAIN, LOCKED_CHATS,
-                LOCKED_COLLECTIONS, UNLOCK_WITH, LOCK_PIN, LOCK_PIN_MISSES, LOCK_PIN_WAIT_UNTIL);
+                LOCKED_COLLECTIONS, LOCKED_COLLECTION_IDS, UNLOCK_WITH, LOCK_PIN, LOCK_PIN_MISSES, LOCK_PIN_WAIT_UNTIL);
     }
 
     /**
@@ -2334,6 +2343,22 @@ public class Settings extends BaseSettings {
             new BooleanSetting("hushgram_hide_saved_new_collection", FALSE);
 
     /**
+     * Leaves the Reels tab out of the tabbed Saved screen
+     * ({@link app.hushgram.extension.instagram.misc.SavedHome}, #810). Saved reels stay saved and still
+     * show under All. Read each time Saved lists its tabs, so it takes no restart. Off to start.
+     */
+    public static final BooleanSetting HIDE_SAVED_REELS_TAB =
+            new BooleanSetting("hushgram_hide_saved_reels_tab", FALSE);
+
+    /**
+     * Leaves the Saved bookmark off the top of the Search tab
+     * ({@link app.hushgram.extension.instagram.misc.SavedHome}, #810). The Search tab's top bar is built
+     * once, so a change takes a restart. Off to start.
+     */
+    public static final BooleanSetting HIDE_EXPLORE_SAVED =
+            new BooleanSetting("hushgram_hide_explore_saved", FALSE, true);
+
+    /**
      * Instagram stops waking itself with an alarm every minute or two to note that it is still running
      * ({@link app.hushgram.extension.instagram.misc.Heartbeat}). Read each time the next alarm would be set.
      * Off to start.
@@ -3068,6 +3093,16 @@ public class Settings extends BaseSettings {
      */
     public static final BooleanSetting HIDE_CAPTION_WORD_COMMENTS =
             new BooleanSetting("hushgram_hide_caption_word_comments", FALSE, parent(HIDE_CAPTION_WORD_REELS));
+
+    /**
+     * {@link #REELS_BLOCKED_WORDS} in the Search tab's Explore grid and under search results too
+     * (#807): a row of the grid holding a post whose caption holds one, or whose author the list
+     * names with an @name, leaves the grid
+     * ({@link app.hushgram.extension.instagram.reels.CaptionWordSearch}). Waits for
+     * {@link #HIDE_CAPTION_WORD_REELS}, and is off to start.
+     */
+    public static final BooleanSetting HIDE_CAPTION_WORD_SEARCH =
+            new BooleanSetting("hushgram_hide_caption_word_search", FALSE, parent(HIDE_CAPTION_WORD_REELS));
 
     /**
      * Reels whose caption is in a language not listed in {@link #REELS_KEPT_LANGUAGES}

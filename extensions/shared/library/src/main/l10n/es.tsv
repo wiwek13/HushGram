@@ -1052,6 +1052,14 @@ Shows a handle at the right edge of Saved and your collections while they scroll
 Hide the New collection button	Ocultar el botón Nueva colección
 # context: Profiles > summary of Hide the New collection button; Saved is Instagram's own Saved page (#762)
 Takes the + for a new collection off the top of Saved. Your collections stay.	Quita el + para una nueva colección de la parte de arriba de Guardado. Tus colecciones se quedan.
+# context: Profiles > switch right after Hide the New collection button; Reels is Instagram's own label for the Reels tab at the top of Saved, Saved is Instagram's own Saved page (#810)
+Hide the Reels tab in Saved	Ocultar la pestaña de Reels en Guardado
+# context: Profiles > summary of Hide the Reels tab in Saved; saved reels still show under All (#810)
+Takes the Reels tab out of Saved. Your saved reels stay saved.	Quita la pestaña de Reels de Guardado. Tus reels guardados siguen guardados.
+# context: Profiles > switch right after Hide the Reels tab in Saved; Saved is Instagram's own label for the bookmark at the top right of the Search tab, beside the search bar (#810)
+Hide Saved on the Search tab	Ocultar Guardado en la pestaña de Búsqueda
+# context: Profiles > summary of Hide Saved on the Search tab (#810)
+Takes the Saved bookmark off the top of the Search tab. Restart Instagram after changing it.	Quita el marcador de Guardado de la parte de arriba de la pestaña de Búsqueda. Reinicia Instagram tras cambiarlo.
 Battery	Batería
 Stop the background heartbeat	Detener el latido en segundo plano
 Instagram wakes your phone every minute or two, screen off included, only to note that it is still running. This stops that. Messages, notifications and everything you see are unaffected.	Instagram despierta tu teléfono cada minuto o dos, también con la pantalla apagada, solo para anotar que sigue funcionando. Esto lo detiene. Los mensajes, las notificaciones y todo lo que ves no cambian.
@@ -2796,6 +2804,9 @@ Even on silent	También en silencio
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	Los videos del feed empiezan con sonido aunque el teléfono esté en silencio o en vibración. Solo cuenta el volumen multimedia.
 
+Also in search	También en la búsqueda
+Takes rows of the Explore grid and of search results out when a post in them holds a word or phrase from the list, or comes from an account the list names with @.	Quita filas de la cuadrícula de Explorar y de los resultados de búsqueda cuando una publicación en ellas contiene una palabra o frase de la lista, o es de una cuenta que la lista nombra con @.
+
 %1$d followed again	%1$d volvieron a seguirte
 %1$d new	%1$d nuevos
 %1$d people unfollowed you	%1$d personas dejaron de seguirte
@@ -2852,3 +2863,4 @@ new	nuevos
 today, %1$s	hoy, %1$s
 unfollowed	dejaron de seguirte
 yesterday, %1$s	ayer, %1$s
+

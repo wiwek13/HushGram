@@ -1041,6 +1041,14 @@ Shows a handle at the right edge of Saved and your collections while they scroll
 Hide the New collection button	隐藏新建珍藏分类按钮
 # context: Profiles > summary of Hide the New collection button; Saved is Instagram's own Saved page (#762)
 Takes the + for a new collection off the top of Saved. Your collections stay.	移除“已收藏”顶部用来新建珍藏分类的 + 按钮。你的珍藏分类会保留。
+# context: Profiles > switch right after Hide the New collection button; Reels is Instagram's own label for the Reels tab at the top of Saved, Saved is Instagram's own Saved page (#810)
+Hide the Reels tab in Saved	隐藏“已收藏”中的 Reels 标签页
+# context: Profiles > summary of Hide the Reels tab in Saved; saved reels still show under All (#810)
+Takes the Reels tab out of Saved. Your saved reels stay saved.	移除“已收藏”中的 Reels 标签页。你收藏的 Reels 仍会保留。
+# context: Profiles > switch right after Hide the Reels tab in Saved; Saved is Instagram's own label for the bookmark at the top right of the Search tab, beside the search bar (#810)
+Hide Saved on the Search tab	隐藏搜索标签页上的“已收藏”
+# context: Profiles > summary of Hide Saved on the Search tab (#810)
+Takes the Saved bookmark off the top of the Search tab. Restart Instagram after changing it.	移除搜索标签页顶部的“已收藏”书签。变更后请重新启动 Instagram。
 Battery	电池
 Stop the background heartbeat	禁用背景存活上报
 Instagram wakes your phone every minute or two, screen off included, only to note that it is still running. This stops that. Messages, notifications and everything you see are unaffected.	Instagram 每隔一两分钟就会唤醒手机，即使屏幕关闭也一样，目的只是记录自己仍在运行。此选项会停止该行为。消息、通知与画面上的功能不受影响。
@@ -2799,6 +2807,9 @@ Even on silent	静音时也播放声音
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	手机处于静音或振动模式时，动态视频也会带声音开始播放。只看媒体音量.
 
+Also in search	同时应用至搜索
+Takes rows of the Explore grid and of search results out when a post in them holds a word or phrase from the list, or comes from an account the list names with @.	当探索网格或搜索结果中的某一行有帖子包含列表中的字词，或来自列表用 @ 点名的账号时，会移除该行.
+
 %1$d followed again	%1$d 人重新关注
 %1$d new	%1$d 个新粉丝
 %1$d people unfollowed you	%1$d 人取关了你
@@ -2855,3 +2866,4 @@ new	新
 today, %1$s	今天，%1$s
 unfollowed	已取关
 yesterday, %1$s	昨天，%1$s
+

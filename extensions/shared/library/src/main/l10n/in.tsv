@@ -1052,6 +1052,14 @@ Shows a handle at the right edge of Saved and your collections while they scroll
 Hide the New collection button	Sembunyikan tombol Koleksi baru
 # context: Profiles > summary of Hide the New collection button; Saved is Instagram's own Saved page (#762)
 Takes the + for a new collection off the top of Saved. Your collections stay.	Menghapus + untuk koleksi baru dari bagian atas Tersimpan. Koleksimu tetap ada.
+# context: Profiles > switch right after Hide the New collection button; Reels is Instagram's own label for the Reels tab at the top of Saved, Saved is Instagram's own Saved page (#810)
+Hide the Reels tab in Saved	Sembunyikan tab Reels di Tersimpan
+# context: Profiles > summary of Hide the Reels tab in Saved; saved reels still show under All (#810)
+Takes the Reels tab out of Saved. Your saved reels stay saved.	Menghapus tab Reels dari Tersimpan. Reels yang kamu simpan tetap tersimpan.
+# context: Profiles > switch right after Hide the Reels tab in Saved; Saved is Instagram's own label for the bookmark at the top right of the Search tab, beside the search bar (#810)
+Hide Saved on the Search tab	Sembunyikan Tersimpan di tab Cari
+# context: Profiles > summary of Hide Saved on the Search tab (#810)
+Takes the Saved bookmark off the top of the Search tab. Restart Instagram after changing it.	Menghapus penanda Tersimpan dari bagian atas tab Cari. Mulai ulang Instagram setelah mengubahnya.
 Battery	Baterai
 Stop the background heartbeat	Hentikan detak latar belakang
 Instagram wakes your phone every minute or two, screen off included, only to note that it is still running. This stops that. Messages, notifications and everything you see are unaffected.	Instagram membangunkan ponselmu setiap satu atau dua menit, termasuk saat layar mati, hanya untuk mencatat bahwa ia masih berjalan. Ini menghentikannya. Pesan, notifikasi, dan semua yang kamu lihat tidak terpengaruh.
@@ -2796,6 +2804,9 @@ Even on silent	Juga saat senyap
 # context: Summary of Even on silent, a switch under Start feed videos with sound (#762)
 Feed videos start with sound with the phone on silent or vibrate too. Only the media volume counts.	Video feed tetap mulai dengan suara saat ponsel dalam mode senyap atau getar. Hanya volume media yang dihitung.
 
+Also in search	Juga di pencarian
+Takes rows of the Explore grid and of search results out when a post in them holds a word or phrase from the list, or comes from an account the list names with @.	Menghapus baris dari kisi Jelajahi dan hasil pencarian jika ada postingan di dalamnya yang berisi kata atau frasa dari daftar, atau berasal dari akun yang disebut daftar dengan @.
+
 %1$d followed again	%1$d mengikuti lagi
 %1$d new	%1$d baru
 %1$d people unfollowed you	%1$d orang berhenti mengikutimu
@@ -2852,3 +2863,4 @@ new	baru
 today, %1$s	hari ini, %1$s
 unfollowed	berhenti mengikuti
 yesterday, %1$s	kemarin, %1$s
+
